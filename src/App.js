@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import GlobalStyle, { Wrapper } from "./GlobalStyled";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import ContactList from "./components/ContactList";
+import AddEditContact from "./components/AddEditContact";
+
+const routes = [
+  { path: "/add", Component: AddEditContact },
+  { path: "/edit/:uuid", Component: AddEditContact },
+];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <GlobalStyle />
+        <ContactList />
+        {routes.map(({ path, Component }) => (
+          <Route key={path} exact path={path}>
+            {({ match }) => (
+              <CSSTransition
+                in={match != null}
+                timeout={300}
+                classNames="page"
+                unmountOnExit
+              >
+                <div className="page">
+                  <Component />
+                </div>
+              </CSSTransition>
+            )}
+          </Route>
+        ))}
+      </Router>
     </div>
   );
 }
