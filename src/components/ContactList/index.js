@@ -4,6 +4,7 @@ import {
   AddBtn,
   ContactListContainer,
   ContactListWrapper,
+  EmptyPlaceHolder,
   Title,
   TitleWrapper,
 } from "./Styled";
@@ -53,7 +54,7 @@ function ContactList() {
     return function cleanup() {
       unlisten();
     };
-  }, [selected]);
+  }, [selected, history]);
 
   useEffect(() => {
     if (search && search !== "") {
@@ -80,7 +81,7 @@ function ContactList() {
       <ContactListContainer>
         <Wrapper>
           <ContactListWrapper>
-            {contactList.length !== 0 &&
+            {contactList.length !== 0 ?
               contactList
                 .sort((a, b) => {
                   return a.firstName
@@ -95,7 +96,9 @@ function ContactList() {
                       setSelected={setSelected}
                     />
                   );
-                })}
+                }): <EmptyPlaceHolder>
+                No Contacts
+              </EmptyPlaceHolder>}
           </ContactListWrapper>
         </Wrapper>
       </ContactListContainer>

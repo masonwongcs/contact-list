@@ -4,7 +4,6 @@ import {
   Grey1,
   MaterialCubicBezier,
   MiniWrapperWidth,
-  SecondaryColor,
 } from "../../../GlobalStyled";
 
 const fadeIn = keyframes`

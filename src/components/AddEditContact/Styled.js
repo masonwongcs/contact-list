@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import {
   Dark3,
-  MaterialCubicBezier,
   MiniWrapperWidth,
-  PrimaryColor,
   SecondaryColor,
   WrapperWidth,
 } from "../../GlobalStyled";

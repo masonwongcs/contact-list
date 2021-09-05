@@ -31,6 +31,7 @@ export const FieldLabel = styled.label`
   background-color: #fff;
   color: ${Dark1};
   font-weight: bold;
+  font-size: 0.825rem;
 `;
 
 export const FieldInput = styled.input`

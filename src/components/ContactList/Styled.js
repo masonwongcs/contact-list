@@ -64,3 +64,11 @@ export const AddBtn = styled(Link)`
   border-radius: 50%;
   color: #fff;
 `;
+
+export const EmptyPlaceHolder = styled.div`
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+`;

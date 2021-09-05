@@ -11,7 +11,7 @@ export const Dark3 = "#999"
 
 export const MaterialCubicBezier = "cubic-bezier(0.4, 0.0, 0.2, 1)";
 
-export const WrapperWidth = 800;
+export const WrapperWidth = 650;
 export const MiniWrapperWidth = 400;
 
 export const Wrapper = styled.div`

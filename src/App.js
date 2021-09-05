@@ -1,11 +1,6 @@
-import GlobalStyle, { Wrapper } from "./GlobalStyled";
+import GlobalStyle from "./GlobalStyled";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import ContactList from "./components/ContactList";
 import AddEditContact from "./components/AddEditContact";
