@@ -1,5 +1,8 @@
 # Simple Contact List
 
+## Demo
+![](demo.gif)
+
 ## Features
 - Create, Update and Delete Contact
 - Search
