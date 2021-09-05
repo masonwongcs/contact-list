@@ -2,6 +2,12 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const PrimaryColor = "#1A1F71";
 export const SecondaryColor = "#F7B600";
+export const Grey1 = "#ccc"
+export const Grey2 = "#ddd"
+
+export const Dark1 = "#333"
+export const Dark2 = "#666"
+export const Dark3 = "#999"
 
 export const MaterialCubicBezier = "cubic-bezier(0.4, 0.0, 0.2, 1)";
 
@@ -13,7 +19,6 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   @media screen and (max-width: ${WrapperWidth * 1.1}px) {
     width: 100%;
-    padding: 0 0.5rem;
   }
 `;
 

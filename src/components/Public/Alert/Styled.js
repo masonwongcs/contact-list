@@ -1,5 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import {MaterialCubicBezier, MiniWrapperWidth, SecondaryColor} from "../../../GlobalStyled";
+import {
+  Dark2,
+  Grey1,
+  MaterialCubicBezier,
+  MiniWrapperWidth,
+  SecondaryColor,
+} from "../../../GlobalStyled";
 
 const fadeIn = keyframes`
   from {
@@ -52,12 +58,15 @@ export const AlertBox = styled.div`
   animation: ${popIn} 300ms 100ms ${MaterialCubicBezier} forwards;
 `;
 
-export const AlertText = styled.h3`
-  color: #666;
+export const AlertText = styled.p`
+  color: ${Dark2};
   text-align: center;
   font-size: 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  > span {
+    font-weight: bold;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -80,7 +89,7 @@ export const IconWrapper = styled.div`
   height: 4rem;
   top: -2rem;
   border-radius: 50%;
-  color: #ccc;
+  color: ${Grey1};
   background-color: #fff;
   display: flex;
   align-items: center;

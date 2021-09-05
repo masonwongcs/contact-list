@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import {
   AddBtn,
   ContactListContainer,
   ContactListWrapper,
   Title,
+  TitleWrapper,
 } from "./Styled";
 import ContactItem from "./ContactItem";
 import ContactPreview from "./ContactPreview";
@@ -12,21 +13,26 @@ import { ReactComponent as AddIcon } from "../../img/add.svg";
 import { useHistory } from "react-router-dom";
 import { getData } from "../../service";
 import { Wrapper } from "../../GlobalStyled";
+import Search from "./Search";
 
 const INITIAL_LIST = require("../../data.json");
 
 function ContactList() {
   const history = useHistory();
   const [selected, setSelected] = useState();
+  const [search, setSearch] = useState("");
   const [contactList, setContactList] = useState([]);
+  const [originalContactList, setOriginalContactList] = useState([]);
 
   useEffect(() => {
     const localData = window.localStorage.getItem("contact");
     if (!localData) {
       window.localStorage.setItem("contact", JSON.stringify(INITIAL_LIST));
       setContactList(INITIAL_LIST);
+      setOriginalContactList(INITIAL_LIST);
     } else {
       setContactList(JSON.parse(localData));
+      setOriginalContactList(JSON.parse(localData));
     }
   }, []);
 
@@ -34,6 +40,7 @@ function ContactList() {
     const unlisten = history.listen((location) => {
       const localData = JSON.parse(getData());
       setContactList(localData);
+      setOriginalContactList(localData);
 
       if (selected) {
         const updatedSelected = localData.find(
@@ -48,11 +55,30 @@ function ContactList() {
     };
   }, [selected]);
 
+  useEffect(() => {
+    if (search && search !== "") {
+      const filtered = originalContactList.filter(
+        (contact) =>
+          contact.firstName.toLowerCase().includes(search.toLowerCase()) ||
+          contact.lastName.toLowerCase().includes(search.toLowerCase())
+      );
+      setContactList(filtered);
+    } else {
+      setContactList(originalContactList);
+    }
+  }, [search, originalContactList]);
+
   return (
     <AnimateSharedLayout type="crossfade">
-      <Wrapper>
-        <ContactListContainer>
-          <Title>Contact List</Title>
+      <TitleWrapper>
+        <Wrapper>
+          <Title>Contacts</Title>
+          <Search search={search} setSearch={setSearch} />
+        </Wrapper>
+      </TitleWrapper>
+
+      <ContactListContainer>
+        <Wrapper>
           <ContactListWrapper>
             {contactList.length !== 0 &&
               contactList
@@ -71,8 +97,8 @@ function ContactList() {
                   );
                 })}
           </ContactListWrapper>
-        </ContactListContainer>
-      </Wrapper>
+        </Wrapper>
+      </ContactListContainer>
 
       <AnimatePresence>
         {selected && (

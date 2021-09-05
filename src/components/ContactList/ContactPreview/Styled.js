@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {
+  Dark2,
+  Dark3,
+  Grey1,
+  Grey2,
   MaterialCubicBezier,
   MiniWrapperWidth,
   PrimaryColor,
+  SecondaryColor,
 } from "../../../GlobalStyled";
 
 export const ButtonWrapper = styled.div`
@@ -44,24 +49,25 @@ export const ContactPreviewWrapper = styled.div`
 export const ContactPreviewContainer = styled.div`
   width: ${MiniWrapperWidth}px;
   height: auto;
-  padding-top: 7rem;
-  padding-bottom: 2rem;
+  padding: 7rem 3rem 2rem;
   border-radius: 1rem;
   background-color: #fff;
   position: relative;
   text-align: center;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+  border-bottom: 0.5rem solid ${SecondaryColor};
   z-index: 10;
   @media screen and (max-width: ${MiniWrapperWidth}px) {
     width: ${MiniWrapperWidth * 0.85}px;
   }
 
   .profile-picture {
-    height: 10rem;
+    height: 9rem;
     position: absolute;
-    top: -5rem;
-    left: calc(50% - 5rem);
+    top: -4.5rem;
+    left: calc(50% - 4.5rem);
     border-radius: 50%;
+
     @media screen and (max-width: ${MiniWrapperWidth}px) {
       height: 8rem;
       top: -4rem;
@@ -76,12 +82,17 @@ export const ContactPreviewContainer = styled.div`
 
   .email {
     font-size: 1rem;
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
+    color: ${Dark3};
   }
 
   .phone {
     color: ${PrimaryColor};
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding: 1rem 0.5rem;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
   }
 `;
 
@@ -92,7 +103,7 @@ export const CloseButton = styled.button`
   right: 0;
   width: 40px;
   height: 40px;
-  color: #ccc;
+  color: ${Grey1};
   background-color: transparent;
   border: 0;
   outline: none;
@@ -104,12 +115,12 @@ export const CloseButton = styled.button`
   > svg {
     transform: rotate(45deg);
   }
-`
+`;
 
 export const Button = styled(Link)`
   cursor: pointer;
-  color: #666;
-  background-color: #ddd;
+  color: ${Dark2};
+  background-color: ${Grey2};
   outline: none;
   border: 0;
   width: 40px;
@@ -129,6 +140,30 @@ export const Button = styled(Link)`
   }
 
   &:hover {
-    background-color: #ccc;
+    background-color: ${Grey1};
+  }
+`;
+
+export const ContactButton = styled.a`
+  width: 50px;
+  height: 50px;
+  background-color: ${SecondaryColor};
+  border-radius: 0.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+`;
+
+export const ContactButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > a {
+    flex-grow: 1;
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
   }
 `;

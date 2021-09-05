@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {MaterialCubicBezier} from "../../../GlobalStyled";
+import { Grey1, MaterialCubicBezier } from "../../../GlobalStyled";
 
 export const ContactItemWrapper = styled.div`
   cursor: pointer;
@@ -10,17 +10,19 @@ export const ContactItemWrapper = styled.div`
   padding: 1rem;
   background-color: #fff;
   transition: all 200ms ${MaterialCubicBezier};
-  
-  &:hover {
-    transform: translateY(-0.25rem) scale(1.02);
-    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.05);
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-0.25rem) scale(1.02);
+      box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.05);
+    }
   }
 
   .profile-picture {
-    width: 2.5rem;
+    width: 3rem;
     border-radius: 50%;
     border: 1px solid #ececec;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
   }
 
   .name-item {
@@ -28,6 +30,6 @@ export const ContactItemWrapper = styled.div`
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid ${Grey1};
   }
 `;

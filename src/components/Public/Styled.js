@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import { MaterialCubicBezier, PrimaryColor } from "../../GlobalStyled";
+import {
+  Dark1,
+  Grey1,
+  Grey2,
+  MaterialCubicBezier,
+  PrimaryColor,
+} from "../../GlobalStyled";
 
 export const Button = styled.button`
   cursor: pointer;
   height: 3rem;
-  background-color: #ccc;
-  color: #333;
+  background-color: ${Grey1};
+  color: ${Dark1};
   border: 0;
   outline: none;
   border-radius: 0.5rem;
@@ -14,7 +20,7 @@ export const Button = styled.button`
   font-family: "Montserrat", sans-serif;
   transition: all 200ms ${MaterialCubicBezier};
   &:hover {
-    background-color: #ddd;
+    background-color: ${Grey2};
   }
 `;
 

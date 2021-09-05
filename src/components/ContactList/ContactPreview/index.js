@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {
   ButtonWrapper,
+  ContactButton,
+  ContactButtonWrapper,
   ContactPreviewContainer,
   ContactPreviewWrapper,
   CloseButton,
@@ -13,6 +15,8 @@ import { deleteData } from "../../../service";
 import { ReactComponent as CloseIcon } from "../../../img/add.svg";
 import { ReactComponent as EditIcon } from "../../../img/edit.svg";
 import { ReactComponent as DeleteIcon } from "../../../img/trash.svg";
+import { ReactComponent as PhoneIcon } from "../../../img/phone-call.svg";
+import { ReactComponent as EmailIcon } from "../../../img/email.svg";
 import Alert from "../../Public/Alert";
 import { useHistory } from "react-router-dom";
 
@@ -45,7 +49,7 @@ function ContactPreview({ contact, setSelected }) {
   };
 
   return (
-    <ContactPreviewWrapper onClick={close}>
+    <ContactPreviewWrapper>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -53,6 +57,7 @@ function ContactPreview({ contact, setSelected }) {
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: "auto" }}
         className="overlay"
+        onClick={close}
       />
       <motion.div layoutId={uuid}>
         <ContactPreviewContainer>
@@ -75,6 +80,18 @@ function ContactPreview({ contact, setSelected }) {
           </h3>
           <p className="email">{emailAddress}</p>
           <h1 className="phone">{phoneNumber}</h1>
+          <ContactButtonWrapper>
+            {phoneNumber && (
+              <ContactButton href={`tel:${phoneNumber}`}>
+                <PhoneIcon />
+              </ContactButton>
+            )}
+            {emailAddress && (
+              <ContactButton href={`mailto:${emailAddress}`}>
+                <EmailIcon />
+              </ContactButton>
+            )}
+          </ContactButtonWrapper>
           <ButtonWrapper>
             <Button to={`/edit/${uuid}`} onClick={(e) => e.stopPropagation()}>
               <EditIcon />
@@ -90,7 +107,14 @@ function ContactPreview({ contact, setSelected }) {
       </motion.div>
       {showAlert && (
         <Alert
-          text={`Are you sure you want to delete ${firstName} ${lastName}?`}
+          text={
+            <>
+              Are you sure you want to delete{" "}
+              <span>
+                {firstName} {lastName}
+              </span>
+            </>
+          }
           onCancel={hideDeleteConfirm}
           onAccept={deleteContact}
         />

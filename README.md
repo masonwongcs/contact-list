@@ -1,5 +1,11 @@
 # Simple Contact List
 
+## Features
+- Create, Update and Delete Contact
+- Search
+- Direct call or email form Contact Card
+- Smooth Animation
+
 ## Available Scripts
 
 In the project directory, you can run:

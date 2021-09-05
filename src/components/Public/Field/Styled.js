@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import {MaterialCubicBezier, PrimaryColor} from "../../../GlobalStyled";
+import {
+  Dark1,
+  MaterialCubicBezier,
+  PrimaryColor,
+} from "../../../GlobalStyled";
+
+const ERROR_COLOR = "#9a0000";
 
 export const FieldWrapper = styled.div`
   min-height: 3.25rem;
@@ -11,6 +17,9 @@ export const FieldWrapper = styled.div`
   &:focus-within {
     border-color: ${PrimaryColor};
   }
+  &.error {
+    border: 0.2rem solid ${ERROR_COLOR} !important;
+  }
 `;
 
 export const FieldLabel = styled.label`
@@ -20,7 +29,7 @@ export const FieldLabel = styled.label`
   top: -0.75rem;
   padding: 0 0.5rem;
   background-color: #fff;
-  color: #333;
+  color: ${Dark1};
   font-weight: bold;
 `;
 
@@ -36,5 +45,14 @@ export const FieldInput = styled.input`
   background-color: transparent;
   padding: 0 0.75rem;
   font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+`;
+
+export const ErrorMessage = styled.div`
+  color: ${ERROR_COLOR};
+  font-size: 0.75rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: -1.25rem;
+  left: 0.5rem;
 `;
