@@ -3,17 +3,21 @@ import {
   ButtonWrapper,
   ContactPreviewContainer,
   ContactPreviewWrapper,
+  CloseButton,
   Button,
 } from "./Styled";
 import { motion } from "framer-motion";
 import { getAvatar } from "../../../util/avatar";
 import generateBackground from "../../../util/background";
 import { deleteData } from "../../../service";
+import { ReactComponent as CloseIcon } from "../../../img/add.svg";
 import { ReactComponent as EditIcon } from "../../../img/edit.svg";
 import { ReactComponent as DeleteIcon } from "../../../img/trash.svg";
 import Alert from "../../Public/Alert";
+import { useHistory } from "react-router-dom";
 
 function ContactPreview({ contact, setSelected }) {
+  const history = useHistory();
   const { uuid, firstName, lastName, phoneNumber, emailAddress } = contact;
   const [showAlert, setShowAlert] = useState(false);
   const avatar = getAvatar(`${firstName}-${lastName}`);
@@ -21,12 +25,27 @@ function ContactPreview({ contact, setSelected }) {
 
   const deleteContact = (e) => {
     e.stopPropagation();
-    setShowAlert(!showAlert)
-    // deleteData(contact);
+    deleteData(contact);
+    setShowAlert(false);
+    history.push("/");
+  };
+
+  const showDeleteConfirm = (e) => {
+    e.stopPropagation();
+    setShowAlert(true);
+  };
+
+  const hideDeleteConfirm = (e) => {
+    e.stopPropagation();
+    setShowAlert(false);
+  };
+
+  const close = () => {
+    setSelected(undefined);
   };
 
   return (
-    <ContactPreviewWrapper onClick={() => setSelected(undefined)}>
+    <ContactPreviewWrapper onClick={close}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -54,20 +73,28 @@ function ContactPreview({ contact, setSelected }) {
           <h3 className="name">
             {firstName} {lastName}
           </h3>
+          <p className="email">{emailAddress}</p>
+          <h1 className="phone">{phoneNumber}</h1>
           <ButtonWrapper>
             <Button to={`/edit/${uuid}`} onClick={(e) => e.stopPropagation()}>
               <EditIcon />
             </Button>
-            <Button to={`/`} onClick={deleteContact}>
+            <Button to={`/`} onClick={showDeleteConfirm}>
               <DeleteIcon />
             </Button>
           </ButtonWrapper>
-
-          <p className="email">{emailAddress}</p>
-          <h1 className="phone">{phoneNumber}</h1>
+          <CloseButton onClick={close}>
+            <CloseIcon />
+          </CloseButton>
         </ContactPreviewContainer>
       </motion.div>
-      {showAlert && <Alert />}
+      {showAlert && (
+        <Alert
+          text={`Are you sure you want to delete ${firstName} ${lastName}?`}
+          onCancel={hideDeleteConfirm}
+          onAccept={deleteContact}
+        />
+      )}
     </ContactPreviewWrapper>
   );
 }

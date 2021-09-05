@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MaterialCubicBezier, PrimaryColor } from "../../../GlobalStyled";
+import {
+  MaterialCubicBezier,
+  MiniWrapperWidth,
+  PrimaryColor,
+} from "../../../GlobalStyled";
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -25,9 +29,10 @@ export const ContactPreviewWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 
   .overlay {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 0;
     right: 0;
@@ -37,15 +42,19 @@ export const ContactPreviewWrapper = styled.div`
 `;
 
 export const ContactPreviewContainer = styled.div`
-  width: 400px;
-  height: 300px;
+  width: ${MiniWrapperWidth}px;
+  height: auto;
   padding-top: 7rem;
+  padding-bottom: 2rem;
   border-radius: 1rem;
   background-color: #fff;
   position: relative;
   text-align: center;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
   z-index: 10;
+  @media screen and (max-width: ${MiniWrapperWidth}px) {
+    width: ${MiniWrapperWidth * 0.85}px;
+  }
 
   .profile-picture {
     height: 10rem;
@@ -53,6 +62,11 @@ export const ContactPreviewContainer = styled.div`
     top: -5rem;
     left: calc(50% - 5rem);
     border-radius: 50%;
+    @media screen and (max-width: ${MiniWrapperWidth}px) {
+      height: 8rem;
+      top: -4rem;
+      left: calc(50% - 4rem);
+    }
   }
 
   .name {
@@ -71,8 +85,30 @@ export const ContactPreviewContainer = styled.div`
   }
 `;
 
+export const CloseButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  color: #ccc;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  > svg {
+    transform: rotate(45deg);
+  }
+`
+
 export const Button = styled(Link)`
   cursor: pointer;
+  color: #666;
   background-color: #ddd;
   outline: none;
   border: 0;
@@ -85,6 +121,13 @@ export const Button = styled(Link)`
   border-radius: 50%;
   z-index: 10;
   transition: all 200ms ${MaterialCubicBezier};
+
+  @media screen and (max-width: ${MiniWrapperWidth}px) {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
   &:hover {
     background-color: #ccc;
   }

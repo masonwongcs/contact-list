@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { MaterialCubicBezier, PrimaryColor } from "../../GlobalStyled";
+import {
+  MaterialCubicBezier,
+  MiniWrapperWidth,
+  PrimaryColor, WrapperWidth,
+} from "../../GlobalStyled";
 
 export const AddEditContactWrapper = styled.div`
   padding: 1.5rem;
@@ -7,15 +11,21 @@ export const AddEditContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 400px;
+  width: ${MiniWrapperWidth}px;
   border-radius: 0.5rem;
+  @media screen and (max-width: ${MiniWrapperWidth}px) {
+    width: ${MiniWrapperWidth * 0.8}px;
+  }
 `;
 
 export const Title = styled.h1`
-  color: #333;
+  color: #999;
   font-size: 1.75rem;
   margin-bottom: 3rem;
   padding-left: 0.5rem;
+  @media screen and (max-width: ${WrapperWidth * 1.1}px) {
+    font-size: 1.25rem;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -27,35 +37,5 @@ export const ButtonWrapper = styled.div`
     &:not(:last-child) {
       margin-right: 1rem;
     }
-  }
-`;
-
-export const Button = styled.button`
-  cursor: pointer;
-  height: 3rem;
-  background-color: #ccc;
-  color: #333;
-  border: 0;
-  outline: none;
-  border-radius: 0.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  transition: all 200ms ${MaterialCubicBezier};
-  &:hover {
-    background-color: #ddd;
-  }
-`;
-
-export const PrimaryButton = styled(Button)`
-  background-color: ${PrimaryColor};
-  color: #fff;
-  &:hover {
-    background-color: ${PrimaryColor};
-    filter: brightness(1.5);
-  }
-  &[disabled] {
-    opacity: 0.5;
-    pointer-events: none;
   }
 `;

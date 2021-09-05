@@ -5,12 +5,15 @@ export const SecondaryColor = "#F7B600";
 
 export const MaterialCubicBezier = "cubic-bezier(0.4, 0.0, 0.2, 1)";
 
+export const WrapperWidth = 800;
+export const MiniWrapperWidth = 400;
+
 export const Wrapper = styled.div`
-  width: 1000px;
+  width: ${WrapperWidth}px;
   margin: 0 auto;
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: ${WrapperWidth * 1.1}px) {
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -40,11 +43,12 @@ const GlobalStyle = createGlobalStyle`
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 20;
   }
 
   .page-enter {

@@ -11,6 +11,7 @@ import ContactPreview from "./ContactPreview";
 import { ReactComponent as AddIcon } from "../../img/add.svg";
 import { useHistory } from "react-router-dom";
 import { getData } from "../../service";
+import { Wrapper } from "../../GlobalStyled";
 
 const INITIAL_LIST = require("../../data.json");
 
@@ -20,9 +21,9 @@ function ContactList() {
   const [contactList, setContactList] = useState([]);
 
   useEffect(() => {
-    const localData = localStorage.getItem("contact");
+    const localData = window.localStorage.getItem("contact");
     if (!localData) {
-      localStorage.setItem("contact", JSON.stringify(INITIAL_LIST));
+      window.localStorage.setItem("contact", JSON.stringify(INITIAL_LIST));
       setContactList(INITIAL_LIST);
     } else {
       setContactList(JSON.parse(localData));
@@ -49,27 +50,30 @@ function ContactList() {
 
   return (
     <AnimateSharedLayout type="crossfade">
-      <ContactListContainer>
-        <Title>Contact List</Title>
-        <ContactListWrapper>
-          {contactList.length !== 0 &&
-            contactList
-              .sort((a, b) => {
-                return a.firstName
-                  .toLowerCase()
-                  .localeCompare(b.firstName.toLowerCase());
-              })
-              .map((contact) => {
-                return (
-                  <ContactItem
-                    key={contact.uuid}
-                    contact={contact}
-                    setSelected={setSelected}
-                  />
-                );
-              })}
-        </ContactListWrapper>
-      </ContactListContainer>
+      <Wrapper>
+        <ContactListContainer>
+          <Title>Contact List</Title>
+          <ContactListWrapper>
+            {contactList.length !== 0 &&
+              contactList
+                .sort((a, b) => {
+                  return a.firstName
+                    .toLowerCase()
+                    .localeCompare(b.firstName.toLowerCase());
+                })
+                .map((contact) => {
+                  return (
+                    <ContactItem
+                      key={contact.uuid}
+                      contact={contact}
+                      setSelected={setSelected}
+                    />
+                  );
+                })}
+          </ContactListWrapper>
+        </ContactListContainer>
+      </Wrapper>
+
       <AnimatePresence>
         {selected && (
           <ContactPreview contact={selected} setSelected={setSelected} />

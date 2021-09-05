@@ -1,11 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
-import {
-  AddEditContactWrapper,
-  Title,
-  ButtonWrapper,
-  Button,
-  PrimaryButton,
-} from "./Styled";
+import { AddEditContactWrapper, Title, ButtonWrapper } from "./Styled";
+import { Button, PrimaryButton } from "../Public/Styled";
 import Field from "../Public/Field";
 import { getData, saveData, updateData } from "../../service";
 import { useHistory, useParams } from "react-router-dom";
