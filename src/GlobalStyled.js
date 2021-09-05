@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const PrimaryColor = "#1A1F71";
-export const SecondaryColor = "#F7B600";
+export const PrimaryColor = "#003EA9";
+export const SecondaryColor = "#F7BD19";
 export const Grey1 = "#ccc"
 export const Grey2 = "#ddd"
 
